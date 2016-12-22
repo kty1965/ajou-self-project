@@ -35,8 +35,7 @@ column: `device:date` / `string date`
 
 ## 분석 결과
 
-## 분석 환경설정(config)
-
+## 분석 환경설정 및 주요 환경설정 설명
 ### Spark(1.6.0)
 - spark.dynamicAllocation.initialExecutors: 32
 - spark.dynamicAllocation.minExecutors: 32
@@ -96,5 +95,5 @@ property | Description
 --- | ---
 mapreduce.map.memory.mb | 맵리듀스의 Mapper당 할당되는 메모리 (Mapper는 Input Split 갯수만큼 생성 된다)
 mapreduce.map.cpu.vcores | 맵리듀스의 Mapper당 할당되는 코어수
-mapreduce.reduce.memory.mb | 맵리듀스의 Reducer당 할당되는 메모리
+mapreduce.reduce.memory.mb | 맵리듀스의 Reducer당 할당되는 메모리 (Reducer는 자동으로 수가 결정되지 않으며 default 값이나, 임의로 설정해줘야 한다)
 mapreduce.reduce.cpu.vcores | 맵리듀스의 Reduce당 할당되는 코어 수
