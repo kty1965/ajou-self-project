@@ -44,12 +44,17 @@ column: `device:date` / `string date`
 아래의 사진은 위 4가지를 총 5회씩 수행하여 나타낸 평균 값이다.</br>
 Hfile로 write하였을 경우 spark는 28초, mapreduce는 155초가 소요 되었다. 약 5.53배가 빨랐다.</br>
 Hbase로 write하였을 경우 spark는 31초, mapreduce는 119초가 소요 되었다. 약 3.83배가 빨랐다.</br>
-
-
+write의 경우 spark가 확실히 빠른것을 알 수 있었다.
 ![Write MapReduce vs Spark](https://github.com/kty1965/ajou-self-project/blob/master/images/write-mr-spark.png "Write 성능 비교 MR vs Spark")
 
 ### Hbase 데이터를 이용 해서는 수행 시간
 
+아래 사진을 확인해 보면 평균 Spark는 250.8초 / MapReduce는 378.4초 소요 되었다.</br>
+Spark가 약 1.5배 빨랐다.
+Read만 하여 Count하는 경우는 Spark나 MapReduce의 차이는 1.5배 뿐이였다.
+
+MapReduce vs Spark</br>
+![MapReduce from hbase 1](https://github.com/kty1965/ajou-self-project/blob/master/images/mr-spark-FromHbase.png "MapReduce vs Spark")
 
 MR 계산 결과 1</br>
 ![MapReduce from hbase 1](https://github.com/kty1965/ajou-self-project/blob/master/images/mr-FromHbase-1.png "MR 계산 결과 1")
@@ -59,6 +64,12 @@ Spark 계산 결과 1</br>
 ![Spark from hbase 1](https://github.com/kty1965/ajou-self-project/blob/master/images/spark-FromHbase-1.png "Spark 계산 결과 1")
 Spark 계산 결과 2</br>
 ![Spark from hbase 2](https://github.com/kty1965/ajou-self-project/blob/master/images/spark-FromHbase-2.png "Spark 계산 결과 2")
+
+### 분석 결론
+이 분석에서는 간단한 count, write의 연산만 진행 하였지만 이 간단한 연산에서도 Spark가 빠르다는 것은 알게 되었다.</br>
+하지만 원래 [Spark](http://spark.apache.org/) 에서는 10배 / 100배 빠르다 말했지만 꽤나 차이가 나는 것을 알 수 있었다.</br>
+예상하길 spark의 경우 aggregation function등이 더 자유로우며 lazy로딩등을 이용해 더 복잡한 작업을 수행 할 경우 성능은 더 좋아질 것으로 예측된다.
+
 
 ## 분석 환경설정 및 주요 환경설정 설명
 ### Spark(1.6.0)
