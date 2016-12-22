@@ -17,7 +17,7 @@
 ```
 
 ### Hbase data schema
-2억건 이상의 `Random id`</br>
+1.6억건 `Random id`</br>
 rowKey: `Random id` </br>
 column: `device:date` / `string date`
 ```
@@ -30,10 +30,20 @@ column: `device:date` / `string date`
  ```
  
 ## 분석 방법
-- Hfile 데이터를 이용 해서는 Timestamp로 시간을 알아낸 뒤 시간대별 unique id를 counting하여 Hbase,Hfile로 저장하여 진행 하였다.
-- Hbase 데이터를 이용 해서는 count(uniq id)를 하여 진행 하였다.
+1. Hfile 데이터를 이용 해서는 Timestamp로 시간을 알아낸 뒤 시간대별 unique id를 counting하여 Hbase,Hfile로 저장하여 진행 하였다.
+2. Hbase 데이터를 이용 해서는 count(id)를 하여 진행 하였다.
 
 ## 분석 결과
+### Hfile 데이터를 이용 해서는 수행 시간 및 Hbase/Hfile write 성능 분석
+![Write MapReduce vs Spark](https://github.com/kty1965/ajou-self-project/blob/master/images/write-mr-spark.png "Write 성능 비교 MR vs Spark")
+
+### Hbase 데이터를 이용 해서는 수행 시간 
+![MapReduce from hbase 1](https://github.com/kty1965/ajou-self-project/blob/master/images/mr-FromHbase-1.png "MR 계산 결과 1")
+
+![MapReduce from hbase 2](https://github.com/kty1965/ajou-self-project/blob/master/images/mr-FromHbase-2.png "MR 계산 결과 2")
+
+![Spark from hbase 1](https://github.com/kty1965/ajou-self-project/blob/master/images/spark-FromHbase-1.png "Spark 계산 결과 1")
+![Spark from hbase 2](https://github.com/kty1965/ajou-self-project/blob/master/images/spark-FromHbase-2.png "Spark 계산 결과 2")
 
 ## 분석 환경설정 및 주요 환경설정 설명
 ### Spark(1.6.0)
