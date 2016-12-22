@@ -6,7 +6,7 @@
 분석에 이용한 데이터는 아래와 같습니다.
 
 ### HFile data schema
-2635개의 HFile</br>
+2,635개의 HFile</br>
 `Timestamp(millisecond)`/`Random id`/`Random integer`
 
 ```
@@ -35,14 +35,29 @@ column: `device:date` / `string date`
 
 ## 분석 결과
 ### Hfile 데이터를 이용 해서는 수행 시간 및 Hbase/Hfile write 성능 분석
+
+- Write hfile by Spark
+- Write hbase by Spark
+- Write hfile by MapReduce
+- Write hbase by MapReduce
+
+아래의 사진은 위 4가지를 총 5회씩 수행하여 나타낸 평균 값이다.</br>
+Hfile로 write하였을 경우 spark는 28초, mapreduce는 155초가 소요 되었다. 약 5.53배가 빨랐다.</br>
+Hbase로 write하였을 경우 spark는 31초, mapreduce는 119초가 소요 되었다. 약 3.83배가 빨랐다.</br>
+
+
 ![Write MapReduce vs Spark](https://github.com/kty1965/ajou-self-project/blob/master/images/write-mr-spark.png "Write 성능 비교 MR vs Spark")
 
-### Hbase 데이터를 이용 해서는 수행 시간 
+### Hbase 데이터를 이용 해서는 수행 시간
+
+
+MR 계산 결과 1</br>
 ![MapReduce from hbase 1](https://github.com/kty1965/ajou-self-project/blob/master/images/mr-FromHbase-1.png "MR 계산 결과 1")
-
+MR 계산 결과 2</br>
 ![MapReduce from hbase 2](https://github.com/kty1965/ajou-self-project/blob/master/images/mr-FromHbase-2.png "MR 계산 결과 2")
-
+Spark 계산 결과 1</br>
 ![Spark from hbase 1](https://github.com/kty1965/ajou-self-project/blob/master/images/spark-FromHbase-1.png "Spark 계산 결과 1")
+Spark 계산 결과 2</br>
 ![Spark from hbase 2](https://github.com/kty1965/ajou-self-project/blob/master/images/spark-FromHbase-2.png "Spark 계산 결과 2")
 
 ## 분석 환경설정 및 주요 환경설정 설명
